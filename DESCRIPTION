@@ -5,7 +5,7 @@ Authors@R:
     person("Charlie", "Carpenter", , "charles.carpenter@cuanschutz.edu", role = c("aut", "cre"),
            comment = c(ORCID = 0000-0002-4698-1516))
 Description: The package is useful for multi-omic (or any multi-view) spectral clustering. Specifically, we supply some methods for multi-omic spectral clustering when the number of distinct clusters differs among the omics profiles (views). 
-License: GPL-3
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.1
