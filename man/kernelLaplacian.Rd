@@ -7,7 +7,7 @@
 kernelLaplacian(
   dat,
   kernel = c("Gaussian", "ZM", "Spectrum", "Linear"),
-  laplacian = c("sym", "rw"),
+  laplacian = c("shift", "Ng", "sym", "rw"),
   grf.type = c("full", "knn", "e-graph"),
   k = 5,
   p = 5,

@@ -6,7 +6,7 @@
 \usage{
 Laplacian(
   A,
-  laplacian = c("sym", "rw"),
+  laplacian = c("shift", "Ng", "sym", "rw"),
   grf.type = c("full", "knn", "e-graph"),
   k = 5,
   rho = NULL,
@@ -19,7 +19,7 @@ Laplacian(
 \arguments{
 \item{A}{An n by n kernel matrix, where n is the sample size, that represents your initial adjacency matrix. Kernel matrices are symmetric, positive semi-definite distance matrices}
 
-\item{laplacian}{Either \code{"rw"} for the random walk laplacian (default), i.e., \eqn{I-D^{-1}A}, or \code{"sym"} for a symmetric Laplacian, i.e., \eqn{I-D^{-1/2}AD^{1/2}}}
+\item{laplacian}{One of \code{"shift"}, \code{"Ng"}, \code{"rw"} or \code{"sym"}. See details for description}
 
 \item{grf.type}{Type of graph to calculate: \code{"full"} for adjacency matrix equal to the kernel, \code{"knn"} for a k-nearest neighbors graph, \code{"e-graph"} for an "epsilon graph"}
 
@@ -40,6 +40,9 @@ An n\eqn{\times}n matrix where \code{n} is the number of rows in \code{dat}.
 }
 \description{
 Calculate the graph laplacian from a given kernel matrix that represents the full graph weighted adjacency matrix
+}
+\details{
+The four Lapalacians are defined as \eqn{L_{shift}=I+D^{-1/2}AD^{-1/2}}, \eqn{L_{Ng}=D^{-1/2}AD^{-1/2}}, \eqn{L_{sym}=I-D^{-1/2}AD^{-1/2}}, and \eqn{L_{rw}=I-D^{-1}A}. The shifted Laplacian, \eqn{L_{shift}=I+D^{-1/2}AD^{-1/2}}, is recommended for multi-view spectral clustering.
 }
 \examples{
 
