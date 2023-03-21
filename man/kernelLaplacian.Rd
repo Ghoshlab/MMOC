@@ -24,7 +24,7 @@ kernelLaplacian(
 
 \item{kernel}{The type of kernel used to calculate the graph's adjacency matrix: \code{"Gaussian"} for the standard Gaussian kernel, \code{"ZM"} for the Zelnik-Manor kernel, \code{"Spectrum"} for the spectrum kernel, \code{"Linear"} for the linear kernel (dot product), and \code{"Cor"} for a kernel of pairwise correlations. See references for more details.}
 
-\item{laplacian}{Either \code{"rw"} for the random walk laplacian (default), i.e., \eqn{I-D^{-1}A}, or \code{"sym"} for a symmetric Laplacian, i.e., \eqn{I-D^{-1/2}AD^{1/2}}}
+\item{laplacian}{One of \code{"shift"}, \code{"Ng"}, \code{"rw"} or \code{"sym"}. See details for description}
 
 \item{grf.type}{Type of graph to calculate: \code{"full"} for adjacency matrix equal to the kernel, \code{"knn"} for a k-nearest neighbors graph, \code{"e-graph"} for an "epsilon graph"}
 
@@ -49,6 +49,9 @@ An n\eqn{\times}n matrix where \code{n} is the number of rows in \code{dat}.
 }
 \description{
 Calculate the graph laplacian from a given data set with subjects as rows and features as columns.
+}
+\details{
+The four Lapalacians are defined as \eqn{L_{shift}=I+D^{-1/2}AD^{-1/2}}, \eqn{L_{Ng}=D^{-1/2}AD^{-1/2}}, \eqn{L_{sym}=I-D^{-1/2}AD^{-1/2}}, and \eqn{L_{rw}=I-D^{-1}A}. The shifted Laplacian, \eqn{L_{shift}=I+D^{-1/2}AD^{-1/2}}, is recommended for multi-view spectral clustering.
 }
 \examples{
 
