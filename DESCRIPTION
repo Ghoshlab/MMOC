@@ -1,0 +1,17 @@
+Package: MMOC
+Title: Multi-omic spectral clustering using manifolds
+Version: 0.0.0.9000
+Authors@R: 
+    person("Charlie", "Carpenter", , "charles.carpenter@cuanschutz.edu", role = c("aut", "cre"),
+           comment = c(ORCID = 0000-0002-4698-1516))
+Description: The package is useful for multi-omic (or any multi-view) spectral clustering. Specifically, we supply some methods for multi-omic spectral clustering when the number of distinct clusters differs among the omics profiles (views). 
+License: GPL-3
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.1
+Imports:
+  Spectrum (>= 1.1),
+  MASS (>= 7.3-58.1)
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
