@@ -3,6 +3,7 @@
 #' @description This function calculates the rank-`k` approximation of a graph Laplacian (or any symmetric matrix). This function performs \link[base]{eigen} decomposition on the given matrix `L` and reconstructs it using only the LAST `k` eigenvectors and eigenvalues.
 #' @param LapList A list of Laplacian matrices
 #' @param k A vector indicating how many eigenvectors to take from each Laplacian, i.e., the number of clusters in each view
+#' @param laplacian One of `"shift"`, `"Ng"`, `"rw"` or `"sym"`. Should be the same type used to calculate your Laplacians
 #' @param plots Whether or not to plot the eigenvalues from the rank approximated Laplacians
 #'
 #' @returns An n\eqn{\times}n matrix
@@ -23,9 +24,12 @@
 #'
 #' kmeans(La$vectors[,1:4], centers=4)
 #' @export
-Lapprox <- function(LapList, k, plots=TRUE){
+Lapprox <- function(LapList, k,
+                    laplacian = c('shift', 'Ng', 'sym', 'rw'),
+                    plots=TRUE){
 
-  LrL <- mapply(rankL, LapList, k, SIMPLIFY = FALSE)
+  LrL <- mapply(rankL, LapList, k,
+                lap.type=laplacian, SIMPLIFY = FALSE)
   Lr <- Reduce('+', LrL)
   eLr <- eigen(Lr)
 
@@ -36,11 +40,15 @@ Lapprox <- function(LapList, k, plots=TRUE){
 }
 
 
-rankL <- function(L, k){
+rankL <- function(L, k, lap.type){
   eig <- eigen(L)
 
   vec <- eig$vector
-  ind <- (ncol(vec)-k+1):ncol(vec)
+
+  if(lap.type %in% c('sym', 'rw')){
+    ind <- (ncol(vec)-k+1):ncol(vec)
+  } else ind <- 1:k
+
   ev <- vec[,ind, drop=FALSE]
   val <- eig$values[ind]
 
