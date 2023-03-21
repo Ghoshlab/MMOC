@@ -29,18 +29,18 @@ clustStruct <- function(n, p, k, noiseDat='random', randNoise=2){
   if(any(k <= 0)) stop("k must be all positive integers")
   if(any(as.integer(k)!=k)) stop("k must be all positive integers")
 
-  lapply(k, function(kk){
+  mapply(function(kk, pp, rn){
 
     means <- c(0, 2^( 1:(kk-1) ) )
     datL <- lapply(means, function(mm){
-      MASS::mvrnorm(n/kk, rep(mm,p), diag(p))
+      MASS::mvrnorm(n/kk, rep(mm,pp), diag(pp))
     })
 
     dat <- do.call(rbind, datL)
 
     if(!is.null(noiseDat)){
       if(is.character(noiseDat)){
-        S <- randNoise*diag(p)
+        S <- rn*diag(p)
         noiseDat <- MASS::mvrnorm(n=n, mu=rep(0,p), Sigma=S)
       }
 
@@ -50,7 +50,7 @@ clustStruct <- function(n, p, k, noiseDat='random', randNoise=2){
     }
 
     dat
-  })
+  }, kk=k, pp=p, rn=randNoise, SIMPLIFY=FALSE)
 
 }
 
