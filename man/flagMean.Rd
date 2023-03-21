@@ -4,12 +4,14 @@
 \alias{flagMean}
 \title{Calculate the Flag mean of multiple subspaces}
 \usage{
-flagMean(LapList, k, plots = TRUE)
+flagMean(LapList, k, laplacian = c("shift", "Ng", "sym", "rw"), plots = TRUE)
 }
 \arguments{
 \item{LapList}{A list of Laplacian matrices}
 
 \item{k}{A vector indicating how many eigenvectors to take from each Laplacian, i.e., the number of clusters in each view}
+
+\item{laplacian}{One of \code{"shift"}, \code{"Ng"}, \code{"rw"} or \code{"sym"}. Should be the same type used to calculate your Laplacians}
 
 \item{plots}{Whether or not to plot the singular values from SVD}
 }

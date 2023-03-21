@@ -4,6 +4,7 @@
 #'
 #' @param LapList A list of Laplacian matrices
 #' @param k A vector indicating how many eigenvectors to take from each Laplacian, i.e., the number of clusters in each view
+#' @param laplacian One of `"shift"`, `"Ng"`, `"rw"` or `"sym"`. Should be the same type used to calculate your Laplacians
 #' @param plots Whether or not to plot the singular values from SVD
 #'
 #' @return The same output as \link[base]{svd}
@@ -34,11 +35,14 @@
 #'
 #' kmeans(fm$u[, 1:4], centers=4)
 #' @export
-flagMean <- function(LapList, k, plots=TRUE){
+flagMean <- function(LapList, k,
+                     laplacian = c('shift', 'Ng', 'sym', 'rw'),
+                     plots=TRUE){
 
   ## Eigen decomposition of Laplacians
   EigList <- lapply(LapList, eigen)
-  Ul <- mapply(smlEig, LapList, k, SIMPLIFY = FALSE)
+  Ul <- mapply(smlEig, LapList, k,
+               lap.type=laplacian, SIMPLIFY = FALSE)
   svdX <- FM(Ul)
 
   if(plots) plot(svdX$d, col='dodgerblue3', pch=20, type="b",
@@ -58,8 +62,12 @@ FM <- function(Ul){
   svd(X)
 }
 
-smlEig <- function(L, k){
+smlEig <- function(L, k, lap.type){
   n <- nrow(L)
-  ind <- (n-k+1):n
+
+  if(lap.type %in% c('sym', 'rw')){
+    ind <- (n-k+1):n
+  } else ind <- 1:k
+
   eigen(L)$vectors[,ind, drop=FALSE]
 }

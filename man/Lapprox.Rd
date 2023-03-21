@@ -30,7 +30,7 @@ set.seed(23)
 dd <- clustStruct(n=n, p=30, k=k, noiseDat='random')
 
 ## Laplacians
-L_list <- lapply(dd, kernelLaplacian, kernel="Spectrum", plots=FALSE, verbose=FALSE)
+L_list <- lapply(dd, kernelLaplacian, kernel="Spectrum", laplacian='shift', plots=FALSE, verbose=FALSE)
 
 trueGroups(n,k)
 

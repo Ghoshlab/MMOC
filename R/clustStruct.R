@@ -26,7 +26,7 @@
 #' ## Three view study.
 #' # View 1: 2 groups, 30 variables, random noise = 5
 #' # View 2: 3 groups, 60 variables, random noise = 2
-#' $ View 3: 4 groups, 45 variables, random noise = 4
+#' # View 3: 4 groups, 45 variables, random noise = 4
 #'
 #' s4 <- clustStruct(n=120, k=c(2,3,4), p=c(30,60,45), randNoise=c(5,2,4))
 #'
@@ -47,8 +47,8 @@ clustStruct <- function(n, p, k, noiseDat='random', randNoise=2){
 
     if(!is.null(noiseDat)){
       if(is.character(noiseDat)){
-        S <- rn*diag(p)
-        noiseDat <- MASS::mvrnorm(n=n, mu=rep(0,p), Sigma=S)
+        S <- rn*diag(pp)
+        noiseDat <- MASS::mvrnorm(n=n, mu=rep(0,pp), Sigma=S)
       }
 
       if(!all(dim(dat) == dim(noiseDat))) stop("'noiseDat' must have same 'n' and 'p' as simulated data")

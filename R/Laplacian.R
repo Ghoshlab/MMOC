@@ -54,14 +54,14 @@ Laplacian <- function(A, laplacian = c('shift', 'Ng', 'sym', 'rw'),
   deg <- rowSums(A)
 
   ## 'Shifted' Laplacian
-  if(lap.type == "shift"){
+  if(laplacian == "shift"){
     ds <- ifelse(deg>0, 1/sqrt(deg), 0)
     # L = I + D^(-1/2) A D^(-1/2)
     L <- diag(nrow = nrow(A)) + diag(ds) %*% A %*% diag(ds)
   }
 
   ## Laplacian used by Ng (2002) 'On Spectral Clustering'
-  if(lap.type == "Ng"){
+  if(laplacian == "Ng"){
     ds <- ifelse(deg>0, 1/sqrt(deg), 0)
     # L = D^(-1/2) A D^(-1/2)
     L <- diag(ds) %*% A %*% diag(ds)

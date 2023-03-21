@@ -42,7 +42,7 @@ s3 <- clustStruct(n=120, p=30, k=c(2,3,3), noiseDat='random')
 ## Three view study.
 # View 1: 2 groups, 30 variables, random noise = 5
 # View 2: 3 groups, 60 variables, random noise = 2
-$ View 3: 4 groups, 45 variables, random noise = 4
+# View 3: 4 groups, 45 variables, random noise = 4
 
 s4 <- clustStruct(n=120, k=c(2,3,4), p=c(30,60,45), randNoise=c(5,2,4))
 
