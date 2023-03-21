@@ -85,30 +85,30 @@ orthoCheck <- function(x){
 
 # Data Generation ---------------------------------------------------------
 
-clustStruct <- function(n, p, k, noiseDat=NULL, randNoise=2){
-  if(any(n%%k!=0)) stop("n must be divisible by k.")
-
-  lapply(k, function(kk){
-
-    means <- c(0, 2^( 1:(kk-1) ) )
-    datL <- lapply(means, function(mm){
-      MASS::mvrnorm(n/kk, rep(mm,p), diag(p))
-    })
-
-    dat <- do.call(rbind, datL)
-
-    if(!is.null(noiseDat)){
-      if(is.character(noiseDat)){
-        S <- randNoise*diag(p)
-        noiseDat <- MASS::mvrnorm(n=n, mu=rep(0,p), Sigma=S)
-      }
-      dat <- dat+noiseDat
-    }
-
-    dat
-  })
-
-}
+# clustStruct <- function(n, p, k, noiseDat=NULL, randNoise=2){
+#   if(any(n%%k!=0)) stop("n must be divisible by k.")
+#
+#   lapply(k, function(kk){
+#
+#     means <- c(0, 2^( 1:(kk-1) ) )
+#     datL <- lapply(means, function(mm){
+#       MASS::mvrnorm(n/kk, rep(mm,p), diag(p))
+#     })
+#
+#     dat <- do.call(rbind, datL)
+#
+#     if(!is.null(noiseDat)){
+#       if(is.character(noiseDat)){
+#         S <- randNoise*diag(p)
+#         noiseDat <- MASS::mvrnorm(n=n, mu=rep(0,p), Sigma=S)
+#       }
+#       dat <- dat+noiseDat
+#     }
+#
+#     dat
+#   })
+#
+# }
 
 getGroups <- function(n,k){
   ttt <- numeric(0)
