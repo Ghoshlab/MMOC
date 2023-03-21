@@ -4,12 +4,14 @@
 \alias{Lapprox}
 \title{Compute a rank \code{k} approximation of a graph Laplacian}
 \usage{
-Lapprox(LapList, k, plots = TRUE)
+Lapprox(LapList, k, laplacian = c("shift", "Ng", "sym", "rw"), plots = TRUE)
 }
 \arguments{
 \item{LapList}{A list of Laplacian matrices}
 
 \item{k}{A vector indicating how many eigenvectors to take from each Laplacian, i.e., the number of clusters in each view}
+
+\item{laplacian}{One of \code{"shift"}, \code{"Ng"}, \code{"rw"} or \code{"sym"}. Should be the same type used to calculate your Laplacians}
 
 \item{plots}{Whether or not to plot the eigenvalues from the rank approximated Laplacians}
 }
