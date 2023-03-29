@@ -25,7 +25,7 @@
 #' L_list <- lapply(dd, kernelLaplacian, kernel="Spectrum", plots=FALSE, verbose=FALSE)
 #'
 #' ## Calculating the flag mean
-#' fm <- flagMean(L_list, k=k)
+#' fm <- flagMean(L_list, k=k, laplacian='shift')
 #'
 #' ## Knowing the true structure makes it much easier to know how
 #' ## many right singular vectors to grab. There are 4 distinct
@@ -38,6 +38,8 @@
 flagMean <- function(LapList, k,
                      laplacian = c('shift', 'Ng', 'sym', 'rw'),
                      plots=TRUE){
+
+  if(missing(laplacian)) stop("laplacian argument must be specified")
 
   ## Eigen decomposition of Laplacians
   EigList <- lapply(LapList, eigen)

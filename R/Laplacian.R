@@ -25,7 +25,7 @@
 #' rho <- median(dist(dd))
 #' A <- exp(-(1/rho)*as.matrix(dist(dd, method = "euclidean", upper = TRUE)^2))
 #'
-#' Laplacian(A, laplacian='rw', grf.type = 'knn')
+#' Laplacian(A, laplacian='shift', grf.type = 'knn')
 #' @export
 Laplacian <- function(A, laplacian = c('shift', 'Ng', 'sym', 'rw'),
                       grf.type = c('full', 'knn', 'e-graph'),
