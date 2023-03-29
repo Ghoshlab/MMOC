@@ -35,7 +35,7 @@ dd <- clustStruct(n=n, p=30, k=k, noiseDat='random')
 L_list <- lapply(dd, kernelLaplacian, kernel="Spectrum", plots=FALSE, verbose=FALSE)
 
 ## Calculating the flag mean
-fm <- flagMean(L_list, k=k)
+fm <- flagMean(L_list, k=k, laplacian='shift')
 
 ## Knowing the true structure makes it much easier to know how
 ## many right singular vectors to grab. There are 4 distinct

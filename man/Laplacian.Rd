@@ -54,7 +54,7 @@ dd <- clustStruct(n=120, p=30, k=3, noiseDat='random')[[1]]
 rho <- median(dist(dd))
 A <- exp(-(1/rho)*as.matrix(dist(dd, method = "euclidean", upper = TRUE)^2))
 
-Laplacian(A, laplacian='rw', grf.type = 'knn')
+Laplacian(A, laplacian='shift', grf.type = 'knn')
 }
 \references{
 \url{https://academic.oup.com/bioinformatics/article/36/4/1159/5566508#199177546}
