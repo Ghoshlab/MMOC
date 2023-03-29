@@ -36,7 +36,7 @@ Laplacian <- function(A, laplacian = c('shift', 'Ng', 'sym', 'rw'),
                       binary.grf=FALSE,
                       plots=TRUE){
 
-  if(missing(laplacian)) laplacian <- 'rw'
+  if(missing(laplacian)) laplacian <- 'shift'
   if(missing(grf.type)) grf.type <- 'full'
 
   diag(A) <- 0 ## Adjacency matrices need diag of 0

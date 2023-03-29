@@ -39,7 +39,7 @@ flagMean <- function(LapList, k,
                      laplacian = c('shift', 'Ng', 'sym', 'rw'),
                      plots=TRUE){
 
-  if(missing(laplacian)) stop("laplacian argument must be specified")
+  if(missing(laplacian)) laplacian <- 'shift'
 
   ## Eigen decomposition of Laplacians
   EigList <- lapply(LapList, eigen)
@@ -49,6 +49,8 @@ flagMean <- function(LapList, k,
 
   if(plots) plot(svdX$d, col='dodgerblue3', pch=20, type="b",
                  ylab="Singular Values", main="Singular values of the flag mean")
+
+  message(paste("Returning flag mean from", laplacian, "Laplacians"))
 
   svdX
 }

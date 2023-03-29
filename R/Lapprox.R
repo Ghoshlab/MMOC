@@ -29,6 +29,8 @@ Lapprox <- function(LapList, k,
                     laplacian = c('shift', 'Ng', 'sym', 'rw'),
                     plots=TRUE){
 
+  if(missing(laplacian)) laplacian <- 'shift'
+
   LrL <- mapply(rankL, LapList, k,
                 lap.type=laplacian, SIMPLIFY = FALSE)
   Lr <- Reduce('+', LrL)
@@ -36,6 +38,8 @@ Lapprox <- function(LapList, k,
 
   if(plots) plot(eLr$values, col='dodgerblue3', pch=20, type="b",
                  ylab="Eigen values", main = "Eigen values of the Pooled Laplacian")
+
+  message(paste("Returning approximate", laplacian, "Laplacians"))
 
   eLr
 }
